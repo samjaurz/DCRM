@@ -3,10 +3,12 @@
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-
+    {% if user.is_authenticated %}
+        <h1>hello word</h1>
+    {% else %}
     <h1>Login</h1>
     <br>
-    <form method="POST" action="{% url 'home' %}">
+
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -16,9 +18,7 @@
             {% endfor %}
         {% endif%}
 
-
-
-
+     <form method="POST" action="{% url 'home' %}">
         {% csrf_token %}
         <div class="mb-3">
             <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="username">
@@ -29,6 +29,6 @@
         <button type="submit" class="btn btn-secondary">Login</button>
     </form>
 
-
+    {% endif %}
 </div>
 {% endblock %}
