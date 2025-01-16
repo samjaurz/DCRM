@@ -1,5 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Hello word</h1>
+
+<div class="col-md-6 offset-md-3">
+
+    <h1>Login</h1>
+    <br>
+    <form method="POST" action="{% url 'home' %}">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong> You should check in on some of those fields below.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif%}
+
+
+
+
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="username">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+
+
+</div>
 {% endblock %}
